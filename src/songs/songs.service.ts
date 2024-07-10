@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { error } from 'console';
 
 @Injectable()
 export class SongsService {
@@ -11,7 +12,8 @@ export class SongsService {
     }
 
     findAll() {
-        return this.songs
+        throw new error
+        // return this.songse
     }
 
     findOne(id) {
