@@ -1,18 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { error } from 'console';
+import Songs from 'src/entities/songs.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class SongsService {
+    constructor(
+        @InjectRepository(Songs)
+        private readonly song_repository: Repository<Songs>
+    ) { }
 
     private readonly songs = [];
 
-    create(song) {
-        this.songs.push(song)
-        return this.songs
+    create = async (song) => {
+        const newSong = await this.song_repository.create({
+            title: song.title,
+            artists: song.artists,
+            // releasedDate: song.releasedDate,
+            // duratiuon: song.duratiuon
+        })
+        this.song_repository.save(newSong)
+        // this.songs.push(song)
+        // return this.songs
+
     }
 
-    findAll() {
-        throw new error
+    findAll = async () => {
+        return await this.song_repository.find()
+        // throw new error
         // return this.songse
     }
 

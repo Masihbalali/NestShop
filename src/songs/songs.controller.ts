@@ -20,9 +20,9 @@ export class SongsController {
 
     // Get all songs
     @Get()
-    findAll() {
+    async findAll() {
         try {
-            return this.songsService.findAll();
+            return await this.songsService.findAll();
         } catch (error) {
             throw new HttpException('server error(erro just made to check try catch, you can fix by editing the findAll() in service.ts)', HttpStatus.INTERNAL_SERVER_ERROR, {
                 cause: error
@@ -32,7 +32,6 @@ export class SongsController {
         }
         return this.songsService.findAll();
     }
-
 
     @Get(":id")
     findOne(
