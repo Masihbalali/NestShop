@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { error } from 'console';
 import Songs from 'src/entities/songs.entity';
 import { Repository } from 'typeorm';
 
